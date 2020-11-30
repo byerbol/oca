@@ -1,0 +1,30 @@
+Which of the following statements are true? (Choose all that apply)
+
+Checked exceptions are required to be caught or declared.
+Errors are intended to be thrown by the JVM (and not the programmer).
+
+
+Checked exceptions:
+— Throwable и Exception и все их наследники (за исключением наследников Error-а и RuntimeException-а) — checked
+— Error и RuntimeException и все их наследники — unchecked
+
+checked exception = проверяемое исключение, проверяемое компилятором.
+
+Object ---> Throwable(checked) ----> 1) Error (unchecked)
+									 2) Exception(checked) -----> Runtime Exception (only unchecked "unchecked by compiler?")
+
+
+nice link: https://habr.com/ru/company/golovachcourses/blog/225585/
+Я называю связь между проверяемыми исключениями и throws — «пессимистичной», польку мы можем «напугать» о большем, чем может произойти на самом деле, но не наоборот
+
+// предупреждаем о Exception
+// и кидаем Exception
+
+
+Мы можем предупредить о большем, чем мы бросаем
+Можем даже предупредить о том, чего вообще нет :)
+Даже если предупреждаем о том, чего нет — все обязаны бояться
+
+Хотя они (испугавшиеся) могут перепугать остальных еще больше
+
+
