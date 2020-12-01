@@ -1,0 +1,13 @@
+19.
+Files with the .java extension contain the Java source code and are compiled to
+files with the .class extension that contain the bytecode. For more information, see
+Chapter 1.
+
+20.
+ RuntimeException -> unchecked
+
+Option A is the exception base class, which is a checked exception. Options B,
+D, and E extend RuntimeException directly or indirectly and therefore are unchecked
+exceptions. Option F is a throwable and not an exception, and so should not be caught
+or declared. For more information, see Chapter 6.
+
