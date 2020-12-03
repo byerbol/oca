@@ -1,0 +1,124 @@
+wildcards - shortcuts;
+You might think that including so many classes slows down your program, but it doesn’t. The
+compiler fi gures out what’s actually needed. Which approach you choose is personal preference.
+Listing the classes used makes the code easier to read, especially for new programmers. Using the
+wildcard can shorten the import list. You’ll see both approaches on the exam.
+
+
+Redundant Imports - for ex: System;
+
+java.lang: automatically imported;
+
+import java.util.Random;
+import java.util.*; -- redundant because Random is imported already;
+
+Now let’s consider some imports that don’t work:
+
+import java.nio.*; // NO GOOD – a wildcard only matches
+//class names, not "file.*Files"
+
+import java.nio.*.*; // NO GOOD – you can only have one wildcard
+//and it must be at the end
+
+import java.nio.files.Paths.*; // NO GOOD – you cannot import methods
+//only class names
+
+import java.util.*;
+import java.sql.*; // DOES NOT COMPILE
+
+When the class is found in multiple packages, Java gives you the compiler error:
+The type Date is ambiguous
+
+In our example, the solution is easy—remove the java.sql.Date import that we don’t
+need. But what do we do if we need a whole pile of other classes in the java.sql package?
+import java.util.Date;
+import java.sql.*;
+Ah, now it works. If you explicitly import a class name, it takes precedence over any
+wildcards present. Java thinks, “Okay! The programmer really wants me to assume use of
+the java.util.Date class.”
+
+One more example. What does Java do with “ties” for precedence?
+import java.util.Date;
+import java.sql.Date;
+Java is smart enough to detect that this code is no good. As a programmer, you’ve
+claimed to explicitly want the default to be both the java.util.Date and java.sql.Date
+implementations. Because there can’t be two defaults, the compiler tells you:
+The import java.sql.Date collides with another import statement
+
+There are two key points to note about the constructor: the name of the constructor
+matches the name of the class, and there’s "no return type".
+
+There are three code blocks and one instance initializer. Counting code blocks is easy:
+you just count the number of pairs of braces. If there aren’t the same number of open ( { )
+and close ( } ) braces, the code doesn’t compile. It doesn’t matter that one set of braces is
+inside the main() method—it still counts.
+
+In the meantime, you need to remember:
+■
+■
+Fields and instance initializer blocks are run in the order in which they appear in
+the file.
+The constructor runs after all fields and instance initializer blocks have run.
+
+
+Java applications contain two types of data: "primitive" types and "reference" types. In this
+section, we’ll discuss the differences between a primitive type and a reference type.
+
+The exam will
+include it in the question if it comes up.
+long max = 3123456789;
+// DOES NOT COMPILE
+Java complains the number is out of range. And it is—for an int . However, we don’t
+have an int . The solution is to add the character L to the number:
+long max = 3123456789L;
+// now Java knows it is a long
+
+
+Another way to specify numbers is to change the “base.” When you learned how to
+count, you studied the digits 0–9. This numbering system is called base 10 since there are
+10 numbers. It is also known as the decimal number system. Java allows you to specify dig-
+its in several other formats:
+■
+■
+■
+octal (digits 0–7), which uses the number 0 as a prefix—for example, 017
+hexadecimal (digits 0–9 and letters A–F), which uses the number 0 followed by x or X
+as a prefix—for example, 0xFF
+binary (digits 0–1), which uses the number 0 followed by b or B as a prefix—for exam-
+ple, 0b10
+
+
+System.out.println(56); // 56
+System.out.println(0b11); // 3
+System.out.println(017); // 15
+System.out.println(0x1F); // 31
+
+
+The last thing you need to know about numeric literals is a feature added in Java 7. You
+can have underscores in numbers to make them easier to read:
+int million1 = 1000000;
+int million2 = 1_000_000;
+
+We’d rather be reading the latter one because the zeroes don’t run together. You can add
+underscores anywhere except at the beginning of a literal, the end of a literal, right before a
+decimal point, or right after a decimal point. Let’s look at a few examples:
+double
+double
+double
+double
+notAtStart = _1000.00;
+// DOES NOT COMPILE
+notAtEnd = 1000.00_;
+// DOES NOT COMPILE
+notByDecimal = 1000_.00;
+// DOES NOT COMPILE
+annoyingButLegal = 1_00_0.0_0; // this one compiles
+
+
+Key Differences
+There are a few important differences you should know between primitives and reference
+types. First, reference types can be assigned null , which means they do not currently refer
+to an object. Primitive types will give you a compiler error if you attempt to assign them
+null . In this example, value cannot point to null because it is of type int :
+int value = null;
+String s = null;
