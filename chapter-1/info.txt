@@ -122,3 +122,117 @@ to an object. Primitive types will give you a compiler error if you attempt to a
 null . In this example, value cannot point to null because it is of type int :
 int value = null;
 String s = null;
+
+
+Identifires
+
+There are only three rules to remember for legal identifi ers:
+■ The name must begin with a letter or the symbol $ or _ .
+■ Subsequent characters may also be numbers.
+■
+You cannot use the same name as a Java reserved word. As you might imagine, a
+reserved word is a keyword that Java has reserved so that you are not allowed to use it.
+Remember that Java is case sensitive, so you can use versions of the keywords that only
+differ in case. Please don’t, though.
+
+
+These examples are not legal:
+3DPointClass // identifiers cannot begin with a number
+hollywood@vine // @ is not a letter, digit, $ or _
+*$coffee // * is not a letter, digit, $ or _
+public
+// public is a reserved word
+
+
+Prepare to be tested on these rules. The following examples are legal:
+okidentifier
+$OK2Identifier
+_alsoOK1d3ntifi3r
+__SStillOkbutKnotsonice$
+
+
+Class names begin with an uppercase letter followed by CamelCase. Don’t start any
+identifi ers with $ . The compiler uses this symbol for some fi les.
+
+
+Instance and Class Variables
+Variables that are not local variables are known as instance variables or class variables.
+Instance variables are also called fi elds. Class variables are shared across multiple objects.
+
+Variable Scope - shekarasy
+
+3: public void eatIfHungry(boolean hungry) {
+4: if (hungry) {
+5:
+int bitesOfCheese = 1;
+6: } // bitesOfCheese goes out of scope here
+7:
+System.out.println(bitesOfCheese);// DOES NOT COMPILE
+8: }
+
+hungry has a scope of the entire method. bitesOfCheese has a smaller scope. It is only
+available for use in the if statement because it is declared inside of it. When you see a set of
+braces ( { } ) in the code, it means you have entered a new block of code. Each block of code
+has its own scope. When there are multiple blocks, you match them from the inside out.
+In our case, the if statement block begins at line 4 and ends at line 6. The method’s block
+begins at line 3 and ends at line 8.
+
+You’ve learned that local variables are declared within a method. How many local variables
+do you see in this example?
+public void eat(int piecesOfCheese) {
+int bitesOfCheese = 1;
+}
+There are two local variables in this method. bitesOfCheese is declared inside the
+method. piecesOfCheese is called a method parameter. It is also local to the method. Both
+of these variables are said to have a scope local to the method. This means they cannot be
+used outside the method.
+
+Remember that blocks can contain other blocks. These smaller contained blocks can ref-
+erence variables defi ned in the larger scoped blocks, but not vice versa. For example:
+16: public void eatIfHungry(boolean hungry) {
+17:
+if (hungry) {
+18:
+int bitesOfCheese = 1;
+19:
+{
+20:
+boolean teenyBit = true;
+21:
+System.out.println(bitesOfCheese);
+22:
+}
+23:
+}
+24:
+System.out.println(teenyBit); // DOES NOT COMPILE
+25: }
+
+
+1:
+2:
+3:
+public class Mouse {
+static int MAX_LENGTH = 5;
+int length;
+
+4:
+public void grow(int inches) {
+5:
+if (length < MAX_LENGTH) {
+6:
+int newSize = length + inches;
+7:
+length = newSize;
+8:
+}
+9:
+}
+10: }
+In this class, we have one class variable ( MAX_LENGTH ), one instance variable ( length ),
+and two local variables ( inches and newSize .) MAX_LENGTH is a class variable because it has
+the static keyword in its declaration.
+
+■ Local variables—in scope from declaration to end of block
+■ Instance variables—in scope from declaration until object garbage collected
+■ Class variables—in scope from declaration until program ends
