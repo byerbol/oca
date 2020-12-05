@@ -236,3 +236,38 @@ the static keyword in its declaration.
 ■ Local variables—in scope from declaration to end of block
 ■ Instance variables—in scope from declaration until object garbage collected
 ■ Class variables—in scope from declaration until program ends
+
+
+So far so good. This is a common pattern that you should be familiar with. How about
+this one?
+/* header */
+package structure;
+// class Meerkat
+public class Meerkat { }
+
+A file is also allowed to have neither class be public. As long as there isn’t more than
+one public class in a fi le, it is okay. On the OCP exam, you’ll also need to understand inner
+classes, which are classes within a class.
+
+
+A reference may or may
+not be created on the heap.
+All references are the same
+size, no matter what their
+data type is, and are accessed
+by their variable name.
+
+Objects are always on the heap.
+They have no name and can only be
+accessed via a reference. Objects vary in
+size depending on their class definition.
+
+Remember, finalize() is only run when the object is eligible for garbage collection. The
+problem here is that by the end of the method, the object is no longer eligible for garbage
+collection because a static variable is referring to it and static variables stay in scope until
+the program ends. Java is smart enough to realize this and aborts the attempt to throw out
+the object. Now suppose later in the program objects is set to null . Oh, good, we can
+fi nally remove the object from memory. Java remembers already running finalize() on
+this object and will not do so again. The lesson is that the finalize() call could run zero
+or one time. This is the exact same lesson as the simple example—that’s why it’s so easy to
+remember.
