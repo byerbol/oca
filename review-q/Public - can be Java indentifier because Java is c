@@ -1,0 +1,5 @@
+Public - can be Java indentifier because Java is case sensetive
+and Public is not reserved keyword
+
+
+int numGrains = 5.6; // compile error

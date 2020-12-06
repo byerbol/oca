@@ -1,0 +1,62 @@
+Public - can be Java indentifier because Java is case sensetive
+and Public is not reserved keyword
+
+
+int numGrains = 5.6; // compile error
+
+
+package aquarium;
+public class Water {
+boolean salty = false;
+}
+package aquarium.jellies;
+public class Water {
+boolean salty = true;
+}
+package employee;
+INSERT IMPORTS HERE
+public class WaterFiller {
+Water water;
+}
+
+
+// Which water do u use ?
+import aquarium.*;
+import aquarium.jellies.*;
+
+
+// same class Name in the imports java can't compile it.
+import aquarium.Water;
+import aquarium.jellies.Water;
+
+
+17. Which of the following are true? (Choose all that apply)
+public class Bunny {
+public static void main(String[] args) {
+Bunny bun = new Bunny();
+} }
+
+Bunny is a class, bun is a reference to an object.
+
+Q19 and 20 very difficult to me :(
+
+System.gc() suggests that Java might wish to run the garbage collector. Java is free to ignore the request. finalize() runs if an object attempts to be garbage collected.
+
+What does the following code output?
+1: public class Salmon {
+2: int count;
+3: public void Salmon() {
+4:
+count = 4;
+5: }
+6: public static void main(String[] args) {
+7: Salmon s = new Salmon();
+8: System.out.println(s.count);
+9: } }
+
+
+line 3's code is not constructor )
+it's a method booy.
+when line 7 runs then empty constructor will be called, and count has default value of 0 (integer def value is 0).
+
+Q23. When running a Java program, you pass just the name of the class without the .class extension like java Main ?
