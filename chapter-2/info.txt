@@ -160,6 +160,25 @@ File z = x;
 System.out.println(x == y); // Outputs false
 System.out.println(x == z); // Outputs true
 
+Ternary Operator
+int x = (y > 5) ? (2 * y) : (3 * y);
+
+Data types supported by switch statements include the following:
+■ int and Integer
+■ byte and Byte
+■ short and Short
+■ char and Character
+■ int and Integer
+■ String
+■ enum values
+For the exam, we recommend you memorize this list. Note that boolean and long , and
+their associated wrapper classes, are not supported by switch statements.
+
+Another thing you might notice is that the default block is not at the end of the switch
+statement. There is no requirement that the case or default statements be in a particular
+order, unless you are going to have pathways that reach multiple sections of the switch
+block in a single execution.
+
 
 
 
