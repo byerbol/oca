@@ -1,0 +1,131 @@
+int substring(int beginIndex)
+int substring(int beginIndex, int endIndex)
+
+String string = "animals";
+System.out.println(string.substring(3)); // mals
+System.out.println(string.substring(string.indexOf('m'))); // mals
+System.out.println(string.substring(3, 4)); // m
+System.out.println(string.substring(3, 7)); // mals
+
+System.out.println(string.substring(3, 3)); // empty string
+System.out.println(string.substring(3, 2)); // throws exception
+System.out.println(string.substring(3, 8)); // throws exception
+
+5:
+6:
+7:
+8:
+9:
+String a = "abc";
+String b = a.toUpperCase();
+b = b.replace("B", "2").replace('C', '3');
+System.out.println("a=" + a);
+System.out.println("b=" + b);
+
+On line 5, we set a to point to "abc" and never pointed a to anything else. Since we are
+dealing with an immutable object, none of the code on lines 6 or 7 changes a .
+b is a little trickier. Line 6 has b pointing to "ABC" , which is straightforward. On line 7,
+we have method chaining. First, “ ABC".replace("B", "2") is called. This returns "A2C" .
+Next, "A2C".replace("'C', '3') is called. This returns "A23" . Finally, b changes to point
+to this returned String . When line 9 executes, b is "A23" .
+
+replace mozhno i char
+
+
+StringBuilder vs. StringBuffer
+When writing new code that concatenates a lot of String objects together, you should
+use StringBuilder . StringBuilder was added to Java in Java 5. If you come across older
+code, you will see StringBuffer used for this purpose. StringBuffer does the same thing
+but more slowly because it is thread safe. You’ll learn about threads for the OCP exam. In
+theory, you don’t need to know about StringBuffer on the exam at all. However, we bring
+this up anyway, since an older question might still be left on the exam.
+
+
+What types of reference variables do you think the following code creates?
+int[] ids, types;
+The correct answer is two variables of type int[] . This seems logical enough. After all,
+int a, b; created two int variables. What about this example?
+int ids[], types;
+All we did was move the brackets, but it changed the behavior. This time we get one vari-
+able of type int[] and one variable of type int . Java sees this line of code and thinks
+something like this: “They want two variables of type int . The fi rst one is called ids[] .
+This one is a int[] called ids . The second one is just called types . No brackets, so it is a
+regular integer.”
+Needless to say, you shouldn’t write code that looks like this. But you do still need to
+understand it for the exam.
+
+3:
+4:
+5:
+6:
+7:
+String[] strings = { "stringValue" };
+Object[] objects = strings;
+String[] againStrings = (String[]) objects;
+againStrings[0] = new StringBuilder();
+// DOES NOT COMPILE
+objects[0] = new StringBuilder();
+// careful!
+
+Line 3 creates an array of type String . Line 4 doesn’t require a cast because Object is
+a broader type than String . On line 5, a cast is needed because we are moving to a more
+specifi c type. Line 6 doesn’t compile because a String[] only allows String objects and
+StringBuilder is not a String .
+Line 7 is where this gets interesting. From the point of view of the compiler, this is just
+fi ne. A StringBuilder object can clearly go in an Object[] . The problem is that we don’t
+actually have an Object[] . We have a String[] referred to from an Object[] variable. At
+runtime, the code throws an ArrayStoreException . You don’t need to memorize the name
+of this exception, but you do need to know that the code will throw an exception.
+
+
+ArrayList list = new ArrayList(); // List of Object ?
+list.add("hawk");
+// [hawk]
+
+list.add(Boolean.TRUE);
+System.out.println(list);
+
+// [hawk, true]
+// [hawk, true]
+
+3:
+4:
+5:
+6:
+7:
+List<String> birds = new ArrayList<>();
+birds.add("hawk");
+// [hawk]
+birds.add("hawk");
+// [hawk, hawk]
+System.out.println(birds.remove("cardinal")); // prints false
+System.out.println(birds.remove("hawk")); // prints true
+
+8: System.out.println(birds.remove(0)); // prints hawk
+9: System.out.println(birds);
+// []
+
+
+set()
+The set() method changes one of the elements of the ArrayList without changing the size.
+The method signature is as follows:
+E set(int index, E newElement)
+The E return type is the element that got replaced. The following shows how to use this
+method:
+15:
+16:
+17:
+18:
+19:
+20:
+List<String> birds = new ArrayList<>();
+birds.add("hawk");
+// [hawk]
+System.out.println(birds.size());
+// 1
+birds.set(0, "robin");
+// [robin]
+System.out.println(birds.size());
+// 1
+birds.set(1, "robin");
+// IndexOutOfBoundsException

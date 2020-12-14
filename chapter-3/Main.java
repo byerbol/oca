@@ -4,17 +4,23 @@ public class Main {
 
 		// from left to right
 
-		String s1 = "1";
-		String s2 = s1.concat("2");
-		// if I have to change it like it: 
-		// s2 = s2.concat("3");
-		// output will be like: 123; 
-		s2.concat("3");
-		System.out.println(s2); // 12
+		// String s1 = "1";
+		// String s2 = s1.concat("2");
+		// // if I have to change it like it: 
+		// // s2 = s2.concat("3");
+		// // output will be like: 123; 
+		// s2.concat("3");
+		// System.out.println(s2); // 12
 
-		String name = "Fluffy";
-		String name = new String("Fluffy"); // already defined
+		// String name = "Fluffy";
+		// String name = new String("Fluffy"); // already defined
 
-		System.out.println(name);
+		// System.out.println(name);
+
+		String start = "AniMaL";
+		String trimmed = start.trim();
+		String lowercase = trimmed.toLowerCase();
+		String result = lowercase.replace('a', 'A');
+		System.out.println(result);
 	}
 }
