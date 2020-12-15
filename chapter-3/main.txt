@@ -129,3 +129,104 @@ System.out.println(birds.size());
 // 1
 birds.set(1, "robin");
 // IndexOutOfBoundsException
+
+
+int primitive = Integer.parseInt("123");
+Integer wrapper = Integer.valueOf("123");
+
+There are also methods for converting a String to a primitive or wrapper class. You do
+need to know these methods. The parse methods, such as parseInt() , return a primitive,
+and the valueOf() method returns a wrapper class. This is easy to remember because the
+name of the returned primitive is in the method name. For example:
+
+
+Autoboxing
+Why won’t you need to be concerned with whether a primitive or wrapper class is returned,
+you ask? Since Java 5, you can just type the primitive value and Java will convert it to the
+relevant wrapper class for you. This is called autoboxing. Let’s look at an example:
+4:
+5:
+6:
+7:
+8:
+List<Double> weights = new ArrayList<>();
+weights.add(50.5);
+// [50.5]
+weights.add(new Double(60));
+// [50.5, 60.0]
+weights.remove(50.5);
+// [60.0]
+double first = weights.get(0);
+// 60.0
+
+Be careful when autoboxing into Integer . What do you think this code outputs?
+List<Integer> numbers = new ArrayList<>();
+numbers.add(1);
+numbers.add(2);
+numbers.remove(1);
+System.out.println(numbers);
+It actually outputs 1. After adding the two values, the List contains [1, 2]. We then request
+the element with index 1 be removed. That’s right: index 1. Because there’s already a remove()
+method that takes an int parameter, Java calls that method rather than autoboxing. If you
+want to remove the 2, you can write numbers.remove(new Integer(2)) to force wrapper
+class use.
+
+Converting from an array to a List is more interesting. The original array and created
+array backed List are linked. When a change is made to one, it is available in the other. It
+is a fi xed-size list and is also known a backed List because the array changes with it. Pay
+careful attention to the values here:
+20:
+21:
+22:
+23:
+24:
+25:
+26:
+String[] array = { "hawk", "robin" };
+// [hawk, robin]
+List<String> list = Arrays.asList(array); // returns fixed size list
+System.out.println(list.size());
+// 2
+list.set(1, "test");
+// [hawk, test]
+array[0] = "new";
+// [new, test]
+for (String b : array) System.out.print(b + " "); // new test
+list.remove(1);
+// throws UnsupportedOperation Exception
+Line 21 converts the array to a List . Note that it isn’t the java.util.ArrayList we’ve
+grown used to. It is a fi xed-size, backed version of a List . Line 23 is okay because set()
+merely replaces an existing value. It updates both array and list because they point to the
+same data store. Line 24 also changes both array and list . Line 25 shows the array has
+changed to new test . Line 26 throws an exception because we are not allowed to change
+the size of the list.
+
+
+Did you notice that we did not use a constructor in any of the examples? The date and
+time classes have private constructors to force you to use the static methods. The exam
+creators may try to throw something like this at you:
+LocalDate d = new LocalDate(); // DOES NOT COMPILE
+
+Don’t fall for this. You are not allowed to construct a date or time object directly.
+Another trick is to see what happens when you pass invalid numbers to of() . For example:
+LocalDate.of(2015, Month.JANUARY, 32)
+// throws DateTimeException
+You don’t need to know the exact exception that’s thrown, but it’s a clear one:
+java.time.DateTimeException: Invalid value for DayOfMonth
+(valid values 1 - 28/31): 32
+
+
+LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
+LocalTime time = LocalTime.of(5, 15);
+LocalDateTime dateTime = LocalDateTime.of(date, time);
+System.out.println(dateTime);
+// 2020-01-20T05:15
+dateTime = dateTime.minusDays(1);
+System.out.println(dateTime);
+// 2020-01-19T05:15
+dateTime = dateTime.minusHours(10);
+System.out.println(dateTime);
+// 2020-01-18T19:15
+dateTime = dateTime.minusSeconds(30);
+System.out.println(dateTime);
+// 2020-01-18T19:14:30
