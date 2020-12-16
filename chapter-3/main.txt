@@ -215,7 +215,7 @@ You don’t need to know the exact exception that’s thrown, but it’s a clear
 java.time.DateTimeException: Invalid value for DayOfMonth
 (valid values 1 - 28/31): 32
 
-
+ 
 LocalDate date = LocalDate.of(2020, Month.JANUARY, 20);
 LocalTime time = LocalTime.of(5, 15);
 LocalDateTime dateTime = LocalDateTime.of(date, time);
@@ -230,3 +230,36 @@ System.out.println(dateTime);
 dateTime = dateTime.minusSeconds(30);
 System.out.println(dateTime);
 // 2020-01-18T19:14:30
+
+
+Let’s do a quick review. Can you fi gure out which of these lines will throw an exception?
+
+DateTimeFormatter f = DateTimeFormatter.ofPattern("hh:mm");
+f.format(dateTime);
+f.format(date); // will throw exception
+f.format(time);
+
+If you get this question on the exam, think about what the symbols represent. We have
+h for hour and m for minute. Remember M (uppercase) is month and m (lowercase) is minute.
+We can only use this formatter with objects containing times. Therefore, line 6 will throw
+an exception.
+
+
+String literals are stored in the string pool.
+
+The String class has many methods. You need
+to know charAt() , concat() , endsWith() , equals() , equalsIgnoreCase() , indexOf() ,
+length() , replace() , startsWith() , substring() , toLowerCase() , toUpperCase() , and
+trim() .
+
+StringBuffer
+is the same as StringBuilder except that it is thread safe.
+
+Calling == on String objects will check whether they point to the same object in the
+pool. Calling == on StringBuilder references will check whether they are pointing to the
+same StringBuilder object. Calling equals() on String objects will check whether the
+sequence of characters is the same. Calling equals() on StringBuilder objects will check
+whether they are pointing to the same object rather than looking at the values inside.
+
+The date and
+time classes are all immutable, which means the return value must be used.
