@@ -22,3 +22,10 @@ Working with Selected classes from the Java API
 
 Write a simple Lambda expression that consumes a Lambda
 Predicate expression
+
+	Applying Access Modifiers
+
+private : Only accessible within the same class
+default (package private) access: private and other classes in the same package
+protected : default access (same package) and child classes
+public : protected and classes in the other packages
