@@ -29,3 +29,45 @@ private : Only accessible within the same class
 default (package private) access: private and other classes in the same package
 protected : default access (same package) and child classes
 public : protected and classes in the other packages
+
+
+Static vs. Instance
+
+
+
+Static Variables
+
+Other static variables are meant to never change during the program. This type of vari-
+able is known as a constant. It uses the final modifi er to ensure the variable never changes.
+static final constants use a different naming convention than other variables. They use
+all uppercase letters with underscores between “words.” For example:
+public class Initializers {
+private static final int NUM_BUCKETS = 45;
+public static void main(String[] args) {
+NUM_BUCKETS = 5; // DOES NOT COMPILE
+} }
+The compiler will make sure that you do not accidentally try to update a fi nal variable.
+This can get interesting. Do you think the following compiles?
+private static final ArrayList<String> values = new ArrayList<>();
+public static void main(String[] args) {
+values.add("changed");
+}
+It actually does compile. values is a reference variable. We are allowed to call methods
+on reference variables. All the compiler can do is check that we don’t try to reassign the
+final values to point to a different object.
+
+
+Remember that static imports are
+only for importing static members.
+
+Regular imports are for importing a class.
+
+There’s only one more scenario with static imports. In Chapter 1, you learned that
+importing two classes with the same name gives a compiler error. This is true of static
+imports as well. The compiler will complain if you try to explicitly do a static import of
+two methods with the same name or two static variables with the same name. For example:
+import static statics.A.TYPE;
+import static statics.B.TYPE;
+// DOES NOT COMPILE
+Luckily when this happens, we can just refer to the static members via their classname in
+the code instead of trying to use a static import.
