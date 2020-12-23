@@ -90,3 +90,25 @@ Only Rabbit1 gets a default no-argument constructor. It doesn't have a construct
 coded so Java generates a default no-argument constructor. Rabbit2 and Rabbit3 both have
 public constructors already. Rabbit4 has a private constructor. Since these three classes
 have a constructor defi ned, the default no-argument constructor is not inserted for you.
+
+Overloading Constructors
+Up to now, you’ve only seen one constructor per class. You can have multiple constructors
+in the same class as long as they have different method signatures. When overloading meth-
+ods, the method name and parameter list needed to match. With constructors, the name is
+always the same since it has to be the same as the name of the class. This means construc-
+tors must have different parameters in order to be overloaded.
+This example shows two constructors:
+public class Hamster {
+private String color;
+private int weight;
+public Hamster(int weight) {
+// first constructor
+this.weight = weight;
+color = "brown";
+}
+public Hamster(int weight, String color) {
+// second constructor
+this.weight = weight;
+this.color = color;
+}
+}
