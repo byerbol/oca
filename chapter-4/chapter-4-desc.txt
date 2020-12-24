@@ -112,3 +112,89 @@ this.weight = weight;
 this.color = color;
 }
 }
+
+
+Encapsulating Data
+In Chapter 1, we had an example of a class with a fi eld that wasn’t private:
+public class Swan {
+int numberEggs;
+}
+// instance variable
+Why do we care? Since there is default (package private) access, that means any class
+in the package can set numberEggs . We no longer have control of what gets set in our own
+class. A caller could even write this:
+mother.numberEggs = -1;
+This is clearly no good. We do not want the mother Swan to have a negative number of
+eggs!
+Encapsulation to the rescue. Encapsulation means we set up the class so only methods
+in the class with the variables can refer to the instance variables. Callers are required to use
+these methods. Let’s take a look at our newly encapsulated Swan class:
+
+1: public class Swan {
+	2: private int numberEggs; // private
+	3: public int getNumberEggs() { // getter
+	4:return numberEggs;
+	5: }
+	6: public void setNumberEggs(int numberEggs) {// setter
+	7:if (numberEggs >= 0)// guard condition
+	8:this.numberEggs = numberEggs;
+	9: } 
+}
+
+private boolean playing;
+private String name;
+public boolean getPlaying() { return playing; }
+public boolean isPlaying() { return playing; }
+public String name() { return name; }
+public void updateName(String n) { name = n; }
+public void setname(String n) { name = n; }
+
+Lines 12 and 13 are good. They are private instance variables. Line 14 doesn't follow the
+JavaBeans naming conventions. Since playing is a boolean , the getter must begin with is .
+Line 15 is a correct getter for playing . Line 16 doesn't follow the JavaBeans naming con-
+ventions because it should be called getName . Lines 17 and 18 do not follow the JavaBeans
+naming conventions because they should be named setName . Remember that Java is case
+sensitive, so setname is not adequate to meet the naming convention.	
+
+a -> a.canHop()
+
+
+(a) - parameter name
+-> - arrow
+a.canHop() -> body 
+
+
+return and ; needs when it in code block
+
+
+print(a, b -> a.startsWith("test"));
+print(a -> { a.startsWith("test"); });
+print(a -> { return a.startsWith("test") });
+// DOES NOT COMPILE
+// DOES NOT COMPILE
+// DOES NOT COMPILE
+The fi rst line needs parentheses around the parameter list. Remember that the parenthe-
+ses are only optional when there is one parameter and it doesn’t have a type declared. The
+second line is missing the return keyword. The last line is missing the semicolon.
+You might have noticed all of our lambdas return a boolean . That is because the scope
+for the OCA exam limits what you need to learn.
+
+There is one more issue you might see with lambdas. We’ve been defi ning an argument
+list in our lambda expressions. Since Java doesn’t allow us to redeclare a local variable, the
+following is an issue:
+(a, b) -> { int a = 0; return 5;}
+// DOES NOT COMPILE
+
+We tried to redeclare a , which is not allowed. By contrast, the following line is okay
+because it uses a different variable name:
+
+anonymous function: has parameters & body but no name;
+(a, b) -> { int c = 0; return 5;}
+
+
+Instance
+members are allowed to call static members, but static members are not allowed to call
+instance members. Static imports are used to import static members.
+
+Java uses pass-by-value, which means that calls to methods create a copy of the parameters.
+Assigning new values to those parameters in the method doesn’t affect the caller’s variables.
