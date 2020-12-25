@@ -1,0 +1,22 @@
+Java supports single inheritance, by which a class may inherit from only one direct par-
+ent class. Java also supports multiple levels of inheritance, by which one class may extend
+another class, which in turn extends another class. You can extend a class any number of
+times, allowing each descendent to gain access to its ancestor’s members.
+
+To truly understand single inheritance, it may helpful to contrast it with multiple inheri-
+tance, by which a class may have multiple direct parents. By design, Java doesn’t support
+multiple inheritance in the language because studies have shown that multiple inheritance
+can lead to complex, often diffi cult-to-maintain code. Java does allow one exception to the
+single inheritance rule: classes may implement multiple interfaces, as you’ll see later in this
+chapter.
+
+single inheritance & multiple interface 
+
+If the parent doesn’t have a no-argument constructor and the child doesn’t define any
+constructors, the compiler will throw an error and try to insert a default no-argument
+constructor into the child class.
+
+Calling Constructors
+Now that we have covered how to defi ne a valid constructor, we’ll show you how Java calls
+the constructors. In Java, the parent constructor is always executed before the child con-
+structor. For example, try to determine what the following code outputs:
