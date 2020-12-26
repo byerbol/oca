@@ -1,5 +1,11 @@
 public class Sample {
 
+	private static final int L;
+
+	static {
+		L = 2;
+	}
+
 	public Sample() {
 		System.out.println("2");
 	}
@@ -13,5 +19,8 @@ public class Sample {
 
 	public static void main(String[] args) {
 		new Sample(); // construct: instance -> constructor
+
+		// L = 2;
+		System.out.println(L);
 	}
 }

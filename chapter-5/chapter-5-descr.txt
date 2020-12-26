@@ -16,7 +16,26 @@ If the parent doesn’t have a no-argument constructor and the child doesn’t d
 constructors, the compiler will throw an error and try to insert a default no-argument
 constructor into the child class.
 
+Java allows calling a static method through an
+instance variable.
+
 Calling Constructors
 Now that we have covered how to defi ne a valid constructor, we’ll show you how Java calls
 the constructors. In Java, the parent constructor is always executed before the child con-
 structor. For example, try to determine what the following code outputs:
+
+
+Since the main() method is in the same class, it can call private methods in the
+class. this() may only be called as the first line of a constructor. this.variableName
+can be called from any instance method to refer to an instance variable. It cannot be
+called from a static method because there is no instance of the class to refer to. Option
+F is tricky. The default constructor is only written by the compiler if no user-defined
+constructors were provided. this() can only be called from a constructor in the same
+class. Since there can be no user-defined constructors in the class if a default construc-
+tor was created, it is impossible for option F to be true.
+
+if no constructor is defined by user, compiler defined for that default constructor.
+
+
+Both instance and static initializers are able to access static variables
+
