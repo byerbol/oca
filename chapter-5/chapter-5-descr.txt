@@ -82,3 +82,5 @@ The fi rst method, fly() , is overloaded in the subclass Eagle , since the signa
 from a no-argument constructor to a constructor with one int argument. Because the
 method is being overloaded and not overridden, the return type can be changed from
 void to int without issue.
+
+Redeclaring private Methods
