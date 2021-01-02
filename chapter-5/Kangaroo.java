@@ -20,3 +20,9 @@ public class Kangaroo extends Marsupial {
 		joey.getKangarooDescription();
 	}
 }
+
+/*
+	In this example, the isBiped() method is overridden, not hidden, in the child class.
+	Therefore, it is replaced at runtime in the parent class with the call to the child class’s method.
+
+*/
